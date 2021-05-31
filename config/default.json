@@ -1,0 +1,12 @@
+{
+    "api": {
+        "porta": 3000
+    },
+
+    "mysql": {
+        "database" : "loja_discos",
+        "usuario" : "root",
+        "senha" : "admin",
+        "host" : "127.0.0.1"
+    }
+}
