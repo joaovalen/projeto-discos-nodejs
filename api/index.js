@@ -12,4 +12,4 @@ const router = require('./rotas/usuarios')
 // localhost:3000/api/fornecedores 
 app.use('/api/usuarios', router)
 
-app.listen(config.get('api.porta'), () => console.log('a Api está funcionando'))
+app.listen(config.get('api.connection'), () => console.log('The Api is working'))
