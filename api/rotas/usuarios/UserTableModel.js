@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const instance = require('../../database')
 
 const columns = {
-    nome: {
+    name: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -10,7 +10,7 @@ const columns = {
         type: Sequelize.STRING,
         allowNulls: null
     }, 
-    telefone: {
+    phone: {
         type: Sequelize.STRING,
         allowNulls: null
     },
@@ -18,23 +18,23 @@ const columns = {
         type: Sequelize.STRING,
         allowNulls: null
     },
-    endereco: {
+    address: {
         type: Sequelize.STRING,
         allowNulls: null
     }
 }
 
-const opcoes = {
+const options = {
     freezeTableName: true,
     // congela o nome da tablea
-    tableName: 'usuarios',
+    tableName: 'users',
     timestamps: true,
     // Sequelize fornece colunas de data com o timestamps
     
     // alterando para portugues
-    createdAt: 'dataCriacao',
-    updatedAt: 'dataAtualizacao'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
 }
 
 
-module.exports = instance.define('usuarios', columns, opcoes)
+module.exports = instance.define('users', columns, options)

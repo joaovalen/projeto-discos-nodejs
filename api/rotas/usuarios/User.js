@@ -2,36 +2,36 @@ const UserTable = require('./UserTable')
 const TabelaUsuario = require('./UserTable')
 
 class User {
-    constructor ({ nome, cpf, telefone, email, endereco}) {
-        this.nome = nome
+    constructor ({ name, cpf, phone, email, address}) {
+        this.name = name
         this.cpf = cpf
         this.email = email
-        this.telefone = telefone
-        this.endereco = endereco
+        this.phone = phone
+        this.address = address
     }
 
     create () {
         const result = UserTable.insertUser({
-            nome: this.nome,
+            name: this.name,
             cpf: this.cpf,
             email: this.email,
-            telefone: this.telefone,
-            endereco: this.endereco
+            phone: this.phone,
+            address: this.address
         })
     }
 
     async loadUser () {
         const userFound = await UserTable.idSearch(this.id)
-        this.nome = userFound.nome
+        this.name = userFound.name
         this.cpf = userFound.cpf
-        this.telefone = userFound.telefone
-        this.endereco = userFound.endereco
+        this.phone = userFound.phone
+        this.address = userFound.address
         this.email = userFound.email
     }
 
     async update () {
         await UserTable.idSearch(this.id)
-        const fields = ['nome','telefone','cpf','endereco','email']
+        const fields = ['name','phone','cpf','address','email']
         const updateData = {}
 
         fields.forEach((field) => {

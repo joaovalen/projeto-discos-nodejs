@@ -8,7 +8,6 @@ router.get('/', async (request, response) => {
     const result = await UserTable.listUsers()
     response.status(200)
     response.send(JSON.stringify(result))
-    const serializer = new UserSerializer()
 }) 
 
 // POST route
