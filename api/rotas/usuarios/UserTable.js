@@ -1,8 +1,8 @@
 const Modelo = require('./UserTableModel')
 
 module.exports = {
-    insertUser (usuario) {
-        return Modelo.create(usuario)
+    insertUser (user) {
+        return Modelo.create(user)
     },
 
     listUsers () {

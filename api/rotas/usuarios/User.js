@@ -1,5 +1,4 @@
 const UserTable = require('./UserTable')
-const TabelaUsuario = require('./UserTable')
 
 class User {
     constructor ({ name, cpf, phone, email, address}) {
@@ -10,8 +9,8 @@ class User {
         this.address = address
     }
 
-    create () {
-        const result = UserTable.insertUser({
+    async create () {
+        const result = await UserTable.insertUser({
             name: this.name,
             cpf: this.cpf,
             email: this.email,

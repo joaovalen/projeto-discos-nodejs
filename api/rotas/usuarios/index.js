@@ -2,6 +2,7 @@
 const router = require('express').Router()
 const UserTable = require('./UserTable')
 const User = require('./User')
+const UserSerializer = require('../../Serializer').UserSerializer
 
 // GET full route
 router.get('/', async (request, response) => {
@@ -9,15 +10,6 @@ router.get('/', async (request, response) => {
     response.status(200)
     response.send(JSON.stringify(result))
 }) 
-
-// POST route
-router.post('/', async (request, response) => {
-    const reqData = request.body
-    const user = new User(reqData)
-    await user.create()
-    response.status(200)
-    response.send(reqData)
-})
 
 // ID GET route
 router.get('/:userId', async (request, response) => {
@@ -28,9 +20,17 @@ router.get('/:userId', async (request, response) => {
     res.send(JSON.stringify(user))
 })
 
+// POST route
+router.post('/', async (request, response) => {
+    const reqData = request.body
+    const user = new User(reqData)
+    await user.create()
+    response.status(201)
+    response.send(user)
+})
+
 // PUT route
 router.put('/userId', async (request, response) => {
-    console.log('ENTROU NO PUT')
     const id = request.params.userId
     const bodyData = request.body
     const fullData = Object.assign({}, bodyData, {id: id})
