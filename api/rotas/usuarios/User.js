@@ -1,7 +1,8 @@
 const UserTable = require('./UserTable')
 
 class User {
-    constructor ({ name, cpf, phone, email, address}) {
+    constructor ({ id, name, cpf, phone, email, address}) {
+        this.id = id
         this.name = name
         this.cpf = cpf
         this.email = email
@@ -45,6 +46,10 @@ class User {
        // }
 
         await UserTable.update(this.id, updateData)
+    }
+
+    remove () {
+        return UserTable.remove(this.id)
     }
 
 }

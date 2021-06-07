@@ -1,4 +1,5 @@
 const Modelo = require('./UserTableModel')
+const NotFound = require('../../errors/NotFound')
 
 module.exports = {
     insertUser (user) {
@@ -15,6 +16,12 @@ module.exports = {
                 id: id
             }
         })
+
+        if (!userFound) {
+            throw new NotFound('Usuário')
+        }
+
+        return userFound
     },
 
     update (id, updateData) {
@@ -24,5 +31,11 @@ module.exports = {
                 where: {id: id}
             }
         )
+    },
+
+    remove (id) {
+        return Modelo.destroy({
+            where: {id: id}
+        })
     }
 }

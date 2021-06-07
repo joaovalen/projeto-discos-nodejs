@@ -12,12 +12,17 @@ router.get('/', async (request, response) => {
 }) 
 
 // ID GET route
-router.get('/:userId', async (request, response) => {
-    const id = request.params.userId
-    const user = new User({ id: id}) 
-    await user.loadUser()
-    res.status(200)
-    res.send(JSON.stringify(user))
+router.get('/:userId', async (request, response, next) => {
+    try {
+        const id = request.params.userId
+        const user = new User({ id: id}) 
+        await user.loadUser()
+        response.status(200)
+        response.send(JSON.stringify(user))
+    } catch (error) {
+        next(error)
+    }
+    
 })
 
 // POST route
@@ -39,6 +44,22 @@ router.put('/userId', async (request, response) => {
     await user.update()
     res.status(204)
     res.end()
+})
+
+// DELETE
+router.delete('/:idUsuario', async (req, res, next) => {
+    try {
+        const id = req.params.idUsuario
+        const user = new User({id: id})
+        await user.loadUser()
+        await user.remove()
+        res.status(204)
+        res.end()
+    } catch (erro) {
+        next(erro)
+    }
+        
+    
 })
 
 module.exports = router
