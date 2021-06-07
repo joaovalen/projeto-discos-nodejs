@@ -1,4 +1,6 @@
 const UserTable = require('./UserTable')
+const InvalidField = require('../../errors/InvalidField')
+const DataNotProvided = require('../../errors/DataNotProvided')
 
 class User {
     constructor ({ id, name, cpf, phone, email, address}) {
@@ -11,6 +13,7 @@ class User {
     }
 
     async create () {
+        this.validate()
         const result = await UserTable.insertUser({
             name: this.name,
             cpf: this.cpf,
@@ -36,14 +39,14 @@ class User {
 
         fields.forEach((field) => {
             const value = this[field]
-            if (typeof value === 'string' && valor.length > 0){
+            if (typeof value === 'string' && value.length > 0){
                 updateData[field] = value
             }
         })
 
-        //if (Object.keys(dadosParaAtualizar).length === 0){
-        //    throw new ('Dados não fornecidos')
-       // }
+        if (Object.keys(updateData).length === 0){
+            throw new DataNotProvided()
+        }
 
         await UserTable.update(this.id, updateData)
     }
@@ -52,6 +55,18 @@ class User {
         return UserTable.remove(this.id)
     }
 
+    validate() {
+        const fields = ['name','phone','cpf','address','email']
+
+        fields.forEach(field => {
+            const value = this[field]
+
+            if (typeof value !== 'string' || value.length === 0){
+                throw new InvalidField(field)
+            }
+        })
+    }
+    
 }
 
 module.exports = User

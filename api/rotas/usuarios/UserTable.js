@@ -25,7 +25,7 @@ module.exports = {
     },
 
     update (id, updateData) {
-        return Modelo.updata(
+        return Modelo.update(
             updateData,
             {
                 where: {id: id}

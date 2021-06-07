@@ -1,7 +1,7 @@
 class NotFound extends Error {
     constructor(name) {
-        super(`${name} não foi encontrado`)
-        this.name = 'NaoEncontrado'
+        super(`${name} was not found`)
+        this.name = 'NotFound'
         this.idErro = 2 
     }
 }

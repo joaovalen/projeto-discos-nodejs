@@ -1,6 +1,6 @@
 class ValueNotSupported extends Error {
     constructor (contentType) {
-        super(`O tipo de conteúdo ${contentType} não é suportado`)
+        super(`The value type ${contentType} is not supported`)
         this.name = 'ValueNotSupported'
         this.idErro = 1
     }
