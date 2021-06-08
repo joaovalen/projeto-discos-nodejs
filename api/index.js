@@ -27,8 +27,12 @@ app.use((req, res, next) => {
 })
 
 // Users Route
-const router = require('./rotas/usuarios')
-app.use('/api/usuarios', router)
+const usersRouter = require('./rotas/usuarios')
+app.use('/api/usuarios', usersRouter)
+
+// Authors Route
+const authorsRouter = require('./rotas/autores')
+app.use('/api/autores', authorsRouter)
 
 app.use((error, req, res, next) => {
     //console.log('veio pro middleware')

@@ -1,7 +1,13 @@
-const modelo = require('../rotas/usuarios/UserTableModel')
-
+const models = [ 
+        require('../rotas/usuarios/UserTableModel'),
+        require('../rotas/autores/AuthorTableModel')
+]
+       
 async function createTables () {
-        await modelo.sync()
+        for (let counter = 0; counter < models.length; counter++) {
+                const model = models[counter]
+                await model.sync()
+        }
 }
 
 createTables()
