@@ -23,9 +23,9 @@ router.post('/', async (req, res, next) => {
     try {
         const reqData = req.body
         const user = new User(reqData)
-        await user.create()
+        result = await user.create()
         res.status(201)
-        res.send(user)
+        res.send(result)
     } catch (error) {
         next(error)
     }

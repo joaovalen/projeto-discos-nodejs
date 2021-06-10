@@ -21,6 +21,7 @@ class User {
             phone: this.phone,
             address: this.address
         })
+        return result
     }
 
     async loadUser () {

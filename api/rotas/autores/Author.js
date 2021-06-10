@@ -17,6 +17,7 @@ class Author {
             genre: this.genre,
             members: this.members
         })
+        return result
     }
 
     async loadAuthor () {

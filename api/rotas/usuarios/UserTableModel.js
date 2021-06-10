@@ -28,13 +28,7 @@ const options = {
     freezeTableName: true,
     // congela o nome da tablea
     tableName: 'users',
-    timestamps: true,
-    // Sequelize fornece colunas de data com o timestamps
-    
-    // alterando para portugues
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    timestamps: false
 }
-
 
 module.exports = instance.define('users', columns, options)

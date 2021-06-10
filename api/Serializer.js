@@ -1,16 +1,10 @@
 const ValueNotSupported = require('./errors/ValueNotSupported')
 
 class Serializer {
-    json (data) {
-        return JSON.stringify(data)
-    }
     
     serialize (data) {
         data = this.filter(data)
-        if (this.contentType === 'application/json') {
-            return this.json(data)
-        }
-        //throw new ValueNotSupported(this.contentType)        
+        return JSON.stringify(data)     
     }
 
     filter (data) {
@@ -45,6 +39,7 @@ class UserSerializer extends Serializer {
         super()
         this.contentType = contentType
         this.publicFields = [
+            'id',
             'name',
             'cpf',
             'phone',
